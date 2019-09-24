@@ -14,8 +14,7 @@ public class JsonMerge {
    * <p>
    * Please note that the order is important as overlap will be
    * overwritten. As a result latter {@link javax.json.JsonObject}
-   * objects take precedence
-   * over the former ones.
+   * objects take precedence over the former ones.
    *
    * @param jsonObjects to json objects to be merged
    * @return {@link javax.json.JsonObject} with merge results.
