@@ -1,10 +1,10 @@
-##json-merge
+## json-merge
 
 ---
 
 A tiny simple library to merge several (javax.json) JsonObject's together into a new JsonObject.
 
-###Get Started
+### Get Started
 
 Getting started is as easy as adding a dependency on Json-Merge:
 
