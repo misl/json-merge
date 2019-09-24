@@ -11,7 +11,7 @@ Add to your `build->plugins` section (default phase is `generate-sources` phase)
 <plugin>
   <groupId>it.traeck.tools.json-merge</groupId>
   <artifactId>json-merge-maven-plugin</artifactId>
-  <version>1.0.0</version>
+  <version>${json-merge.version}</version>
   <executions>
     <execution>
       <goals>

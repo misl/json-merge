@@ -5,11 +5,11 @@
     <parent>
         <groupId>it.traeck.tools.json-merge</groupId>
         <artifactId>json-merge-reactor</artifactId>
-        <version>0.1.0</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>json-merge</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 
     <name>TraeckIt :: Json Merge :: Library</name>
     <packaging>jar</packaging>

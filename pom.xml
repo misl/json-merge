@@ -4,7 +4,7 @@
 
     <groupId>it.traeck.tools.json-merge</groupId>
     <artifactId>json-merge-reactor</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 
     <name>TraeckIt :: Json Merge (reactor)</name>
     <packaging>pom</packaging>
