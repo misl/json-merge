@@ -41,20 +41,20 @@ public class JsonMergeMojo extends AbstractMojo {
    * Location of the OpenAPI based specification, as URL or file.
    */
   @Parameter(name = "filenames", required = true)
-  private List filenames;
+  List filenames;
 
   /**
    * Output folder where to write final OpenAPI specification file.
    */
   @Parameter(name = "outputPath", property = "json-merge.maven.plugin.outputPath",
       defaultValue = "${project.build.directory}/merged-json")
-  private String outputPath;
+  String outputPath;
 
   /**
    * Name of the output file in which to write final OpenAPI specification.
    */
   @Parameter(name = "outputFilename", property = "json-merge.maven.plugin.outputFilename", defaultValue = "json")
-  private String outputFilename = "json";
+  String outputFilename = "json";
 
   /**
    * Format of the output file.
@@ -62,18 +62,18 @@ public class JsonMergeMojo extends AbstractMojo {
    * Allowed values are: JSON, YAML, JSONANDYAML
    */
   @Parameter(name = "outputFormat", property = "openapi.validator.maven.plugin.outputFormat", defaultValue = "JSON")
-  private Format outputFormat = Format.JSON;
+  Format outputFormat = Format.JSON;
 
   @Parameter(defaultValue = "${project}", readonly = true)
-  private MavenProject project;
+  MavenProject project;
 
   @Parameter(name = "encoding", property = "json-merge.maven.plugin.encoding")
-  private String encoding;
+  String encoding;
 
-  private String projectEncoding = "UTF-8";
+  String projectEncoding = "UTF-8";
 
   @Parameter(name = "prettyPrint", property = "json-merge.maven.plugin.prettyPrint")
-  private Boolean prettyPrint = true;
+  Boolean prettyPrint = true;
 
   // --------------------------------------------------------------------------
   // Overriding AbstractMojo
@@ -166,6 +166,7 @@ public class JsonMergeMojo extends AbstractMojo {
 
   private String writeYaml( JsonObject jsonObject ) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper( new YAMLFactory() );
+    mapper.registerModule( new JSR353Module() );
     if ( prettyPrint ) {
       return mapper.writerWithDefaultPrettyPrinter().writeValueAsString( jsonObject );
     } else {
@@ -175,6 +176,7 @@ public class JsonMergeMojo extends AbstractMojo {
 
   private String writeJson( JsonObject jsonObject ) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper();
+    mapper.registerModule( new JSR353Module() );
     if ( prettyPrint ) {
       return mapper.writerWithDefaultPrettyPrinter().writeValueAsString( jsonObject );
     } else {
