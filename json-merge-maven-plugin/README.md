@@ -18,7 +18,14 @@ Add to your `build->plugins` section (default phase is `generate-sources` phase)
         <goal>generate</goal>
       </goals>
       <configuration>
-        <todo>todo</todo>
+        <filenames> <!-- 2 or more filenames -->
+          <filename>file1</filename>
+          <filename>file2</filename>
+          <filename>file3</filename>
+        </filenames>
+        <outputPath>${project.build.directory}/merged</outputPath>
+        <outputFilename>my-merged-file</outputFilename>
+        <outputFormat>JSONANDYAML</outputFormat>
       </configuration>
     </execution>
   </executions>
@@ -35,7 +42,12 @@ mvn clean compile
 
 Parameter | Description | Required | Default
 ----------|-------------|----------|---------
-`todo` | todo | todo |
+`filenames` | fileanames to be merged | true |
+`outputPath` | target output path | false | `${project.build.directory}/merged-json`
+`outputFilename` | Output filename (without extension) | false | json-merge
+`outputFormat` | Output file format (`JSON`, `YAML`, `JSONANDYAML`) | false | JSON
+`encoding` | encoding to use for output files | false | ${project.build.sourceEncoding}
+`prettyPrint` | whether to pretty print (true) output or not | false | true
 
 ### Sample configurations
 
