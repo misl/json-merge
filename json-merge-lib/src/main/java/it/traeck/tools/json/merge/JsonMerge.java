@@ -3,6 +3,9 @@ package it.traeck.tools.json.merge;
 import javax.json.*;
 import java.util.Objects;
 
+/**
+ * Utility class.
+ */
 public class JsonMerge {
 
   /**
@@ -16,8 +19,8 @@ public class JsonMerge {
    * overwritten. As a result latter {@link javax.json.JsonObject}
    * objects take precedence over the former ones.
    *
-   * @param jsonObjects to json objects to be merged
-   * @return {@link javax.json.JsonObject} with merge results.
+   * @param jsonObjects the json objects to be merged.
+   * @return {@link javax.json.JsonObject} with merged results.
    */
   public static JsonObject merge( JsonObject... jsonObjects ) {
     Objects.requireNonNull( jsonObjects );
