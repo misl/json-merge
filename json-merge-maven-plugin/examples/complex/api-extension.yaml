@@ -1,0 +1,19 @@
+---
+paths:
+  /ideas:
+    get:
+      operationId: getIdeas
+      x-operation-handler: IdeasController
+    post:
+      operationId: createIdea
+      x-operation-handler: IdeasController
+  /ideas/{ideaId}:
+    get:
+      operationId: getIdea
+      x-operation-handler: IdeaController
+    put:
+      operationId: updateIdea
+      x-operation-handler: IdeaController
+    delete:
+      operationId: removeIdea
+      x-operation-handler: IdeaController

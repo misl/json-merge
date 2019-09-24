@@ -1,0 +1,368 @@
+openapi: 3.0.2
+info:
+  title: IdeaBoard Rest API
+  description: This API describes the HTTP interface of IdeaBoard. Using this interface
+    it is possible to create, modify and delete idea cards.
+  contact:
+    email: minto@xup.nl
+  version: 0.1.2
+servers:
+- url: /
+tags:
+- name: Idea
+  description: All idea related operations
+paths:
+  /ideas:
+    get:
+      tags:
+      - Idea
+      summary: Retrieves the ideas.
+      description: Retrieves all ideas.
+      responses:
+        200:
+          description: Array with ideas.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ideas'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Ideas'
+        401:
+          description: Unauthorized - This often means 'Unauthenticated', the client
+            needs to authenticate before requests will be accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        403:
+          description: Forbidden - the user is not authorized to perform the access
+            the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+    post:
+      tags:
+      - Idea
+      summary: Adds a new idea to the board.
+      description: Create a new idea and adds it to the repository.
+      requestBody:
+        description: Data regarding the new idea entry.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Idea'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Idea'
+        required: true
+      responses:
+        201:
+          description: Create has been accepted.
+          headers:
+            Location:
+              description: Gives the location of the newly create idea.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        401:
+          description: Unauthorized - This often means 'Unauthenticated', the client
+            needs to authenticate before requests will be accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        403:
+          description: Forbidden - the user is not authorized to perform the access
+            the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+  /ideas/{ideaId}:
+    get:
+      tags:
+      - Idea
+      summary: Retrieves an existing idea.
+      description: Retrieves all details of an idea.
+      parameters:
+      - name: ideaId
+        in: path
+        description: Specifies the idea id to which the operation applies.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Request for analysis has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Idea'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Idea'
+        401:
+          description: Unauthorized - This often means 'Unauthenticated', the client
+            needs to authenticate before requests will be accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        403:
+          description: Forbidden - the user is not authorized to perform the access
+            the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        404:
+          description: The requested resource could not be found but may be available
+            in the future. Subsequent requests by the client are permissible.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+    put:
+      tags:
+      - Idea
+      summary: Updates an existing idea.
+      description: Update an idea already present with new data.
+      parameters:
+      - name: ideaId
+        in: path
+        description: Specifies the idea id to which the operation applies.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Updated data of an already existing idea.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Idea'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Idea'
+        required: true
+      responses:
+        200:
+          description: Update has been accepted.
+        401:
+          description: Unauthorized - This often means 'Unauthenticated', the client
+            needs to authenticate before requests will be accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        403:
+          description: Forbidden - the user is not authorized to perform the access
+            the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        404:
+          description: The requested resource could not be found but may be available
+            in the future. Subsequent requests by the client are permissible.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+    delete:
+      tags:
+      - Idea
+      summary: Removes an existing idea.
+      description: Removes an idea already present.
+      parameters:
+      - name: ideaId
+        in: path
+        description: Specifies the idea id to which the operation applies.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: The idea has been removed. Also the removed data is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Idea'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Idea'
+        401:
+          description: Unauthorized - This often means 'Unauthenticated', the client
+            needs to authenticate before requests will be accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        403:
+          description: Forbidden - the user is not authorized to perform the access
+            the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+        404:
+          description: The requested resource could not be found but may be available
+            in the future. Subsequent requests by the client are permissible.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemResponse'
+components:
+  schemas:
+    ProblemResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference [RFC3986] that identifies the problem type.
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+        status:
+          type: string
+          description: The HTTP status code ([RFC7231], Section 6) generated by the
+            origin server for this occurrence of the problem.
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of
+            the problem.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of
+            the problem. It may or may not yield further information if dereferenced.
+    Ideas:
+      type: object
+      properties:
+        ideas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Idea'
+      example:
+        ideas:
+        - title: A really great idea
+          destination: An awesome idea that is simple and easy to understand.
+          createdAt: 2019-09-19T19:40:00.000Z
+          updatedAt: 2019-09-19T19:45:00.000Z
+        - title: Another crazy idea
+          destination: A really crazy idea.
+          createdAt: 2019-09-19T20:40:00.000Z
+    Idea:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identification of the idea.
+        title:
+          type: string
+          description: Title for the idea.
+        description:
+          type: string
+          description: Description for the idea.
+        createdAt:
+          type: string
+          description: Timestamp when the idea was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the idea was last updated.
+          format: date-time
+      example:
+        title: A really great idea
+        destination: An awesome idea that is simple and easy to understand.
+        createdAt: 2019-09-19T19:40:00.000Z
+        updatedAt: 2019-09-19T19:45:00.000Z
+  responses:
+    NotFound:
+      description: The requested resource could not be found but may be available
+        in the future. Subsequent requests by the client are permissible.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+    Unauthenticated:
+      description: Unauthorized - This often means 'Unauthenticated', the client needs
+        to authenticate before requests will be accepted.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+    Unauthorized:
+      description: Forbidden - the user is not authorized to perform the access the
+        requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemResponse'
+  parameters:
+    ideaId:
+      name: ideaId
+      in: path
+      description: Specifies the idea id to which the operation applies.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Idea:
+      properties:
+        tag:
+          type: string
+          description: Tag for the idea.

@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.traeck.tools.json-merge.examples</groupId>
+        <artifactId>json-merge-plugin-examples</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
+    <artifactId>json-merge-complex</artifactId>
+
+    <name>TraeckIt :: Json Merge :: Examples :: Complex</name>
+    <packaging>pom</packaging>
+    <description>Complex example usage of maven plugin to merge json files.</description>
+
+    <build>
+        <plugins>
+            <!-- activate the plugin -->
+            <plugin>
+                <groupId>it.traeck.tools.json-merge</groupId>
+                <artifactId>json-merge-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <filenames>
+                                <filename>${project.basedir}/api-public.yaml</filename>
+                                <filename>${project.basedir}/api-extension.yaml</filename>
+                                <filename>${project.basedir}/api-enhanced-model.yaml</filename>
+                            </filenames>
+                            <outputPath>${project.build.directory}/json-merge</outputPath>
+                            <outputFilename>merged</outputFilename>
+                            <outputFormat>JSONANDYAML</outputFormat>
+                            <prettyPrint>true</prettyPrint>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
