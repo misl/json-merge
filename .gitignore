@@ -18,6 +18,7 @@ Thumbs.db
 # IntelliJ excludes
 #####################
 .idea/
+*.iml
 
 # Maven excludes
 #####################
