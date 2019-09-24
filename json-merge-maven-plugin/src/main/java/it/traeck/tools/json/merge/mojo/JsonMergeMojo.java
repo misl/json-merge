@@ -53,8 +53,8 @@ public class JsonMergeMojo extends AbstractMojo {
   /**
    * Name of the output file in which to write final OpenAPI specification.
    */
-  @Parameter(name = "outputFilename", property = "json-merge.maven.plugin.outputFilename", defaultValue = "json")
-  String outputFilename = "json";
+  @Parameter(name = "outputFilename", property = "json-merge.maven.plugin.outputFilename", defaultValue = "json-merge")
+  String outputFilename = "json-merge";
 
   /**
    * Format of the output file.
