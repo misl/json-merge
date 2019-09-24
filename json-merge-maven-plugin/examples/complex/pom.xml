@@ -5,7 +5,7 @@
     <parent>
         <groupId>it.traeck.tools.json-merge.examples</groupId>
         <artifactId>json-merge-plugin-examples</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>json-merge-complex</artifactId>
@@ -24,7 +24,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>validate</goal>
+                            <goal>merge</goal>
                         </goals>
                         <configuration>
                             <filenames>

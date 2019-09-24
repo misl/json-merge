@@ -28,7 +28,7 @@ import java.util.Objects;
 /**
  * Goal which validates OpenAPI based API specification files.
  */
-@Mojo(name = "validate", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
+@Mojo(name = "merge", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
 public class JsonMergeMojo extends AbstractMojo {
 
   public enum Format {JSON, YAML, JSONANDYAML}
