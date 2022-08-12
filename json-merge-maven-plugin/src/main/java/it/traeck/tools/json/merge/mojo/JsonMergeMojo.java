@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.datatype.jsr353.JSR353Module;
+import com.fasterxml.jackson.datatype.jsonp.JSONPModule;
 import it.traeck.tools.json.merge.JsonMerge;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -14,7 +14,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -140,7 +140,7 @@ public class JsonMergeMojo extends AbstractMojo {
     if ( isYamlFile( path ) ) {
       mapper = new ObjectMapper( new YAMLFactory() );
     }
-    mapper.registerModule( new JSR353Module() );
+    mapper.registerModule( new JSONPModule() );
     InputStream stream = new BufferedInputStream( Files.newInputStream( path ) );
     return mapper.readValue( stream, JsonObject.class );
   }
@@ -166,7 +166,7 @@ public class JsonMergeMojo extends AbstractMojo {
 
   private String writeYaml( JsonObject jsonObject ) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper( new YAMLFactory() );
-    mapper.registerModule( new JSR353Module() );
+    mapper.registerModule( new JSONPModule() );
     if ( prettyPrint ) {
       return mapper.writerWithDefaultPrettyPrinter().writeValueAsString( jsonObject );
     } else {
@@ -176,7 +176,7 @@ public class JsonMergeMojo extends AbstractMojo {
 
   private String writeJson( JsonObject jsonObject ) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper();
-    mapper.registerModule( new JSR353Module() );
+    mapper.registerModule( new JSONPModule() );
     if ( prettyPrint ) {
       return mapper.writerWithDefaultPrettyPrinter().writeValueAsString( jsonObject );
     } else {
