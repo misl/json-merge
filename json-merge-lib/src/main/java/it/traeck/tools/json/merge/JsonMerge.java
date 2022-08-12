@@ -1,6 +1,6 @@
 package it.traeck.tools.json.merge;
 
-import javax.json.*;
+import jakarta.json.*;
 import java.util.Objects;
 
 /**
@@ -9,18 +9,18 @@ import java.util.Objects;
 public class JsonMerge {
 
   /**
-   * Merges multiple {@link javax.json.JsonObject} objects into a
-   * single one. The first {@link javax.json.JsonObject} will be
-   * merged with and empty {@link javax.json.JsonObject}. Each
-   * following {@link javax.json.JsonObject} with be merged with
+   * Merges multiple {@link jakarta.json.JsonObject} objects into a
+   * single one. The first {@link jakarta.json.JsonObject} will be
+   * merged with and empty {@link jakarta.json.JsonObject}. Each
+   * following {@link jakarta.json.JsonObject} with be merged with
    * the result of the previous merge.
    * <p>
    * Please note that the order is important as overlap will be
-   * overwritten. As a result latter {@link javax.json.JsonObject}
+   * overwritten. As a result latter {@link jakarta.json.JsonObject}
    * objects take precedence over the former ones.
    *
    * @param jsonObjects the json objects to be merged.
-   * @return {@link javax.json.JsonObject} with merged results.
+   * @return {@link jakarta.json.JsonObject} with merged results.
    */
   public static JsonObject merge( JsonObject... jsonObjects ) {
     Objects.requireNonNull( jsonObjects );
